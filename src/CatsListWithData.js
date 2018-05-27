@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { CATS_SUBSCRIPTION, CATS_LIST_QUERY } from './Queries'
+import ListItem from './ListItem'
 
 class CatsList extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.subscribeCats()
   }
 
-  render() {
+  render () {
     const { cats: { loading, error, allCats } } = this.props
 
     if (loading) {
@@ -18,38 +19,39 @@ class CatsList extends Component {
     }
 
     return (
-      <ul>
-        {allCats.edges.map(({ node }) => <li key={node.id}>{node.name}</li>)}
-      </ul>
+      <div className='list'>
+        {allCats.edges.map(({ node }) => (
+          <ListItem key={node.id} node={node} />
+        ))}
+      </div>
     )
   }
 
   subscribeCats = () => {
     this.props.cats.subscribeToMore({
       document: CATS_SUBSCRIPTION,
-      updateQuery: (previous, { subscription }) => {
-        const updated = subscription.cats.newCat
+      updateQuery: (previous, { subscriptionData }) => {
+        const updated = subscriptionData.data.newCat
         const node = [
-          { 
-            node: updated, 
-            __typename: "CatEdge", 
+          {
+            node: updated,
+            __typename: 'CatEdge'
           },
-          ...previous.allCats.edges,
+          ...previous.allCats.edges
         ]
         const result = {
           ...previous,
           allCats: {
-             __typename: previous.allCats.__typename,
-            edges: node,
-          },
+            __typename: previous.allCats.__typename,
+            edges: node
+          }
         }
-        console.log('result', result)
         return result
-      },
+      }
     })
   }
 }
 
-export const CatsListWithData =  graphql(CATS_LIST_QUERY, {
-  name: 'cats',
+export const CatsListWithData = graphql(CATS_LIST_QUERY, {
+  name: 'cats'
 })(CatsList)

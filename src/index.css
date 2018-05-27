@@ -2,4 +2,53 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #f8f8f8;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  animation-duration: 1000ms;
+  animation-name: slidein;
+  margin: 10px;
+  border: 1px solid #f8f8f8;
+  border-radius: 8px;
+  background-color: #ff6b6b;
+  box-shadow: #dbd7d7 0px 1px 7px 0px;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-container {
+  height: 230px;
+  width: calc(50vw - 30px);
+}
+
+.card-title {
+  margin-left: 20px;
+  text-align: left;
+  color: white;
+  font-weight: 900;
+}
+
+@keyframes slidein {
+  from {
+    visibility: hidden;
+    background-color: #feca57;
+    opacity: 0;
+    transform: rotateX(-90deg);
+    transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
+  }
+
+  to {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
+  }
 }

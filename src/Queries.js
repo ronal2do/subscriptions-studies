@@ -8,6 +8,7 @@ query allcats{
         id
         name
         createdAt
+        avatarUrl
       }
     }
   }
