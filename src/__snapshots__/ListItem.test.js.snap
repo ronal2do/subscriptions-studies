@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListItem node={node} /> Matches the snapshot 1`] = `
+<div
+  className="card"
+  key="1"
+  style={
+    Object {
+      "backgroundImage": "url(https://pbs.twimg.com/profile_images/821713465245102080/mMtKIMax.jpg)",
+    }
+  }
+>
+  <div
+    className="card-container"
+  >
+    <p
+      className="card-title"
+    >
+      my Title
+    </p>
+  </div>
+</div>
+`;
