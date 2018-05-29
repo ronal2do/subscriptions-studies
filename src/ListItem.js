@@ -1,6 +1,17 @@
+// @flow
 import React, { Component } from 'react'
 
-export default class ListItem extends Component {
+type Props = {
+  node: NodeType,
+}
+
+type NodeType = {
+  name: string,
+  id: string,
+  avatarUrl: string,
+}
+
+export default class ListItem extends Component<Props> {
   render () {
     const { node: { name, id, avatarUrl } } = this.props
     return (

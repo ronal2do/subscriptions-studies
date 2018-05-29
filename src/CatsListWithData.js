@@ -1,9 +1,25 @@
+// @flow
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { CATS_SUBSCRIPTION, CATS_LIST_QUERY } from './Queries'
 import ListItem from './ListItem'
 
-class CatsList extends Component {
+type Props = {
+  cats: CatsType,
+}
+
+type CatsType = {
+  loading: boolean,
+  error: ErrorType,
+  allCats: Object,
+  subscribeToMore: (config: Object) => void,
+}
+
+type ErrorType = {
+  message: string,
+}
+
+class CatsList extends Component<Props> {
   componentDidMount () {
     this.subscribeCats()
   }
