@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { graphql } from 'react-apollo'
 import { CATS_SUBSCRIPTION, CATS_LIST_QUERY } from './Queries'
 import ListItem from './ListItem'
@@ -19,8 +19,9 @@ type ErrorType = {
   message: string,
 }
 
-class CatsList extends Component<Props> {
+class CatsList extends PureComponent<Props> {
   componentDidMount () {
+    // TODO: unsubscribre on CDUM
     this.subscribeCats()
   }
 
